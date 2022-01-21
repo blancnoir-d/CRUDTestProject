@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class employee(models.Model):
@@ -10,7 +11,8 @@ class employee(models.Model):
     monthly_salary = models.IntegerField()
     entry_date = models.DateField(null=True)
 
-
-
     def __str__(self):
         return f'[{self.pk}]{self.emp_name}'
+
+    def get_absolute_url(self):
+        return f'/emp/{self.pk}/'

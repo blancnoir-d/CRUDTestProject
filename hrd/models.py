@@ -7,3 +7,5 @@ class team(models.Model):
     team_explanation = models.TextField()
 
 
+    def __str__(self):
+        return f'[{self.pk}]{self.team_name}'

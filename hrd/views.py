@@ -9,5 +9,5 @@ class TeamList(ListView):
     ordering = '-pk'
 
 
-class TeamDerail(DetailView):
+class TeamDetail(DetailView):
     model = team

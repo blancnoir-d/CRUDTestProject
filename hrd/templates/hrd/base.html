@@ -7,17 +7,12 @@
 </head>
 <body>
 {% include 'hrd/navbar.html' %}
-<div class="row text-center" style="width: 100%">
 
-    <div style="width: 30%; float:none; margin:0 auto">
+<div class="container my-3">
+{% block main_block %}
+{% endblock %}
 
-        {% block team_list %}
-        {% endblock %}
-    </div>
 </div>
-
-
-
 
 </body>
 </html>

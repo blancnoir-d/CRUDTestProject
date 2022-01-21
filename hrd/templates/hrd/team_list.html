@@ -1,22 +1,28 @@
 {% extends 'hrd/base.html' %}
-{% block team_list %}
-    {% if team_list.exists %}
 
-        <div class="card" style="width: 100%;">
-            <div class="card-header">
-                부서명
-            </div>
-            <ul class="list-group list-group-flush">
+{% block main_block %}
 
-                {% for row in team_list %}
-                    <li class="list-group-item"><a href = "">{{ row.team_name }}</a></li>
-                {% endfor %}
+    <div class="row text-center" style="width: 100%">
 
-            </ul>
+        <div style="width: 50%; float:none; margin:0 auto">
+            {% if team_list.exists %}
+                <div class="card" style="width: 100%;">
+                    <div class="card-header">
+                        부서명
+                    </div>
+                    <ul class="list-group list-group-flush">
+
+                        {% for row in team_list %}
+                            <li class="list-group-item"><a href= {{ row.get_absolute_url }}>{{ row.team_name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% else %}
+                <h3>아직 등록된 부서가 없습니다</h3>
+            {% endif %}
+
         </div>
+    </div>
 
-    {% else %}
-    <h3>아직 등록된 부서가 없습니다</h3>
-    {% endif %}
 
 {% endblock %}

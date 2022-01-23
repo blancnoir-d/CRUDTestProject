@@ -2,7 +2,7 @@
 
 {% block main_block %}
 
-{#    유저 확인#}
+{# 부서 등록 버튼#}
     {% if user.is_authenticated %}
         {% if user.is_superuser or user.is_staff %}
             <a class="btn btn-info btn-sm float-right" href="/hrd/teamcreate/" role="button">

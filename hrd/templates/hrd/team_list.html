@@ -2,7 +2,16 @@
 
 {% block main_block %}
 
+{#    유저 확인#}
+    {% if user.is_authenticated %}
+        {% if user.is_superuser or user.is_staff %}
+            <a class="btn btn-info btn-sm float-right" href="/hrd/teamcreate/" role="button">
+                <i class="fas fa-pen"></i>&nbsp;&nbsp;부서 등록</a>
+        {% endif %}
+    {% endif %}
+
     <div class="row text-center" style="width: 100%">
+
 
         <div style="width: 50%; float:none; margin:0 auto">
             {% if team_list.exists %}

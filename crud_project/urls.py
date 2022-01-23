@@ -17,9 +17,18 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
 
+#미디어 파일을 위한 URL 처리 (이걸 제대로 해줘야 admin에서 이미지를 누를때 원본이 보인다)
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('hrd.urls')),
     path('hrd/',include('hrd.urls')),
     path('emp/',include('emp.urls')),
 ]
+
+
+#미디어 파일을 위한 URL 처리
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

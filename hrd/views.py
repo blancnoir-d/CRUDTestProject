@@ -1,7 +1,9 @@
 from django.shortcuts import render
+
+
 from .models import team
 from emp.models import employee  # 해당 팀의 팀원들을 가지고 오고 싶어
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 # CreateView 하면서 추가 된 부분
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -11,6 +13,8 @@ from django.shortcuts import render, redirect
 # Update하면서 추가 된 부분
 from django.core.exceptions import PermissionDenied
 
+#Delete 하면서 추가 된 부분
+from django.urls import reverse_lazy
 
 # Create your views here.
 class TeamList(ListView):
@@ -66,3 +70,9 @@ class TeamUpdate(UpdateView, LoginRequiredMixin):
     def form_valid(self, form):
         response = super(TeamUpdate, self).form_valid(form)
         return response
+
+#삭제 ( 템플릿 없이 모달로만)
+class TeamDelete(DeleteView):
+    model = team
+    success_url = reverse_lazy('team_li') #urls.py에 이름을 지정해줘야(team_li) 적용이 되네 ㅠ  삭제후 띄울 화면
+    template_name = 'hrd/team_list.html'

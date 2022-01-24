@@ -1,10 +1,13 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import employee
 
 # CreateView 하면서 추가 된 부분
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render, redirect
+
+# Delete 하면서 추가 된 부분
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -45,3 +48,10 @@ class EmpUpdate(UpdateView, LoginRequiredMixin):
     def form_valid(self, form):
         response = super(EmpUpdate, self).form_valid(form)
         return response
+
+
+# 삭제
+class EmpDelete(DeleteView):
+    model = employee
+    success_url = reverse_lazy('emp_li')
+    template_name = 'emp/employee_list.html'

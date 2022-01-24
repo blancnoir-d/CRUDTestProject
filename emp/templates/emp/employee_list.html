@@ -1,27 +1,38 @@
 {% extends 'base.html' %}
 {% block main_block %}
-<div class="row">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">사원명</th>
-                    <th scope="col">직급</th>
-                    <th scope="col">입사일</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for row in employee_list %}
+  {#    부서 등록 버튼#}
+    {% if user.is_authenticated %}
+        {% if user.is_superuser or user.is_staff %}
+            <a class="btn btn-info btn-sm m-2" href="/emp/create_emp/" role="button">
+                <i class="fas fa-pen"></i> 사원 등록</a>
+        {% endif %}
+    {% endif %}
+
+    <div class="row">
+
+
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">사원명</th>
+                <th scope="col">직급</th>
+                <th scope="col">입사일</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in employee_list %}
 
                 <tr>
-                    <th scope="row">1</th>
+                    <th scope="row">{{ row.pk }}</th>
                     <td><a href="{{ row.get_absolute_url }}">{{ row.emp_name }}</a></td>
                     <td>{{ row.emp_rank }}</td>
                     <td>{{ row.entry_date }}</td>
                 </tr>
-                {% endfor %}
+            {% endfor %}
 
-                </tbody>
-            </table>
-        </div>
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

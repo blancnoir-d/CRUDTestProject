@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 {% block main_block %}
     <h1>사원 정보 수정</h1>
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
         <table>
-            {{ form }}
+            {{ form | crispy }}
         </table>
         <button type="submit" class="btn btn-primary float-right">Submit</button>
     </form>

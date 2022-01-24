@@ -37,7 +37,7 @@
                     {% for row in team_member %}
                     <tr>
                         <th scope="row">{{ row.id }}</th>
-                        <td>{{ row.emp_name }}</td>
+                        <td><a href="/emp/{{ row.id }}">{{ row.emp_name }}</a></td> {# 사원 상세로 갈 수 있도록 #}
                         <td>{{ row.emp_rank }}</td>
                         <td>{{ row.entry_date }}</td>
                     </tr>

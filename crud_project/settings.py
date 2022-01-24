@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'hrd',
     'emp',
     'bootstrap4',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +123,7 @@ USE_TZ = False
 STATIC_URL = 'static/'
 MEDIA_URL = '/memia/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '_media')
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 # Default primary key field type

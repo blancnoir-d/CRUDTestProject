@@ -1,5 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from . import views
 
 app_name = "accounts"
 # urlpatterns = [
@@ -10,4 +11,10 @@ app_name = "accounts"
 # LoginView는 registration이라는 템플릿 디렉토리에서 login.html 파일을 찾는다.
 urlpatterns = [
   path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
+  path('register/', views.UserCreate.as_view(), name='regi'),
+  path('register_done/', views.RegisterDone.as_view(), name='register_done'),
+  # path('pass_change/', views.PasswordChange.as_view(), name='pass_change'),
+  path('pass_change/', views.change_password, name='pass_change'),
+  path('pass_change_done/', views.PasswordChangeDone.as_view(), name='pass_change_done'),
+  path('logout/', views.LogoutView.as_view(), name='logout'),
 ]

@@ -22,10 +22,31 @@
             </ul>
 
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/accounts/login" >Log In</a>
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" href="/accounts/login">Log In</a>#}
+{#                </li>#}
+            </ul>
+
+            <ul class="navbar-nav ml-5 mr-5">
+                <li class="nav-item dropdown mx-1 btn btn-primary">
+                    {% if user.is_active %}
+                        <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">
+                            <i class="fas fa-user"></i>&ensp;{% firstof user.get_short_name user.get_username %}&ensp;</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
+                            <a class="dropdown-item" href="{% url 'accounts:pass_change' %}">Change Password</a>
+                        </div>
+                    {% else %}
+                        <a class="nav-link dropdown-toggle text-white" href="#" data-toggle="dropdown">
+                            <i class="fas fa-user"></i>&ensp;Anonymous&ensp;</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{% url 'accounts:login' %}">Login</a>
+                            <a class="dropdown-item" href="{% url 'accounts:regi' %}">Register</a>
+                        </div>
+                    {% endif %}
                 </li>
             </ul>
+
         </div>
     </div>
 </nav>

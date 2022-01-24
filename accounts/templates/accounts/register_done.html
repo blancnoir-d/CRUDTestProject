@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block main_block %}
+
+    <h1>Registration Completed Successfully</h1> 
+    <br>
+
+    <p>Thank you for registering.</p> 
+
+    <p class="font-italic"><a href="{% url 'accounts:login' %}">Log in</a> </p>
+
+{% endblock %}

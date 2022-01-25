@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block main_block %}
+
+
+    <br>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div style="text-align:center;"><h1>Log out</h1></div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div style="text-align:center;"><i class="fas fa-quote-left"></i>
+                <span class="h6">&ensp;Thanks for spending your quality time with this web site today.&ensp;</span>
+                <i class="fas fa-quote-right"></i></div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="m-5" style="text-align:center;"><p class="font-italic"><a href="{% url 'accounts:login' %}">Log in again</a>
+            </p></div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div>
+
+    </div>
+
+
+
+
+
+{% endblock %}
+

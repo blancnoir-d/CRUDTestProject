@@ -19,7 +19,8 @@ from django.urls import reverse_lazy
 # Create your views here.
 class TeamList(ListView):
     model = team
-    ordering = '-pk'
+    ordering = ['-pk']
+    paginate_by = 3
 
 
 class TeamDetail(DetailView):

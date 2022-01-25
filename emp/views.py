@@ -9,11 +9,16 @@ from django.shortcuts import render, redirect
 # Delete 하면서 추가 된 부분
 from django.urls import reverse_lazy
 
+#pagination 하면서 추가 된 부분
+from django.core.paginator import Paginator
+
 
 # Create your views here.
 
 class EmpList(ListView):
     model = employee
+    ordering = ['-pk']
+    paginate_by = 2 # pagination 하면서 추가
 
 
 class EmpDetail(DetailView):
@@ -22,6 +27,7 @@ class EmpDetail(DetailView):
 
 class EmpCreate(CreateView, LoginRequiredMixin, UserPassesTestMixin):
     model = employee
+    ordering = '-pk'
     fields = ['emp_name', 'team_number', 'emp_rank', 'emp_responsibilities', 'monthly_salary', 'entry_date', 'image']
 
     def CheckUser(self):

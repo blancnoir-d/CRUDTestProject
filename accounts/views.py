@@ -57,5 +57,4 @@ class PasswordChangeDone(TemplateView):
     template_name = 'accounts/password_change_done.html'
 
 
-class UserLogout(LogoutView):
-    template_name = 'accounts/templates/registeration/log_out.html'
+

@@ -1,6 +1,5 @@
 from django.shortcuts import render
 
-
 from .models import team
 from emp.models import employee  # 해당 팀의 팀원들을 가지고 오고 싶어
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -13,8 +12,12 @@ from django.shortcuts import render, redirect
 # Update하면서 추가 된 부분
 from django.core.exceptions import PermissionDenied
 
-#Delete 하면서 추가 된 부분
+# Delete 하면서 추가 된 부분
 from django.urls import reverse_lazy
+
+# 검색구현하면서 추가된 부분
+from django.db.models import Q
+
 
 # Create your views here.
 class TeamList(ListView):
@@ -72,8 +75,29 @@ class TeamUpdate(UpdateView, LoginRequiredMixin):
         response = super(TeamUpdate, self).form_valid(form)
         return response
 
-#삭제 ( 템플릿 없이 모달로만)
+
+# 삭제 ( 템플릿 없이 모달로만)
 class TeamDelete(DeleteView):
     model = team
-    success_url = reverse_lazy('team_li') #urls.py에 이름을 지정해줘야(team_li) 적용이 되네 ㅠ  삭제후 띄울 화면
+    success_url = reverse_lazy('team_li')  # urls.py에 이름을 지정해줘야(team_li) 적용이 되네 ㅠ  삭제후 띄울 화면
     template_name = 'hrd/team_list.html'
+
+
+# 검색기능
+class TeamSearch(TeamList):
+    paginate_by = None
+
+    def get_queryset(self):
+        q = self.kwargs['q']
+        #Q : 여러 조건을 사용하고 싶을 때 사용
+        team_list = team.objects.filter(
+            Q(team_name__contains=q)
+        ).distinct() #중복 제거
+        return team_list
+
+    def get_context_data(self, **kwargs):
+        context = super(TeamSearch, self).get_context_data()
+        q = self.kwargs['q']
+        context['search_info'] = f'Search: {q} ({self.get_queryset().count()})'
+
+        return context

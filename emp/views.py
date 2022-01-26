@@ -12,6 +12,8 @@ from django.urls import reverse_lazy
 #pagination 하면서 추가 된 부분
 from django.core.paginator import Paginator
 
+# 검색구현하면서 추가된 부분
+from django.db.models import Q
 
 # Create your views here.
 
@@ -61,3 +63,21 @@ class EmpDelete(DeleteView):
     model = employee
     success_url = reverse_lazy('emp_li')
     template_name = 'emp/employee_list.html'
+
+
+#검색
+class EmpSearch(EmpList):
+    paginate_by = None
+
+    def get_queryset(self):
+        q = self.kwargs['q']
+        emp_list = employee.objects.filter(
+          Q(emp_name__contains=q)
+        ).distinct()
+        return emp_list
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(EmpSearch, self).get_context_data()
+        q = self.kwargs['q']
+        context['search_info'] = f'Serch: {q}({self.get_queryset().count()})'
+        return context

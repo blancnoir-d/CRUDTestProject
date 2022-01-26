@@ -6,5 +6,6 @@ urlpatterns = [
     path('<int:pk>/', views.EmpDetail.as_view()), #emp/숫자
     path('create_emp/', views.EmpCreate.as_view()),
     path('update_emp/<int:pk>/', views.EmpUpdate.as_view()),
-    path('<int:pk>/delete_emp', views.EmpDelete.as_view(),name='emp_d')
+    path('<int:pk>/delete_emp', views.EmpDelete.as_view(),name='emp_d'),
+    path('search/<str:q>/', views.EmpSearch.as_view()),
 ]

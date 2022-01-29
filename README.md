@@ -20,7 +20,7 @@ Django를 이용해 만든 간단한 부서관리 사이트. CRUD를 구현하�
 
 ## 개발 과정 정리
 ### model 설계<br>
-부서, 사원 앱을 각각 생성해서 각 앱에 모델 생성 예정
+부서, 사원 앱을 각각 생성해서 각 앱에 모델 생성 예정<br>
 **부서 리스트(ListView) - 부서 정보(DetailView)**
 - 부서번호 id(id) - Integer - PK
 - 부서명 (dept)-  String
